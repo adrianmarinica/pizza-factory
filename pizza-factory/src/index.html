@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <title>Pizza Factory</title>
     <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="pizza.js"></script>
+    <script type="text/javascript" src="interaction.js"></script>
 </head>
 <body>
     <img id="logo" src="logo.png" />
@@ -15,9 +17,9 @@
                 <h2>SIZE</h2>
             </div>
             <div class="right">
-                <a href="javascript:void('0');">Small 18cm</a>
-                <a href="javascript:void('0');">Medium 25cm</a>
-                <a href="javascript:void('0');">Large 35cm</a>
+                <a class="pizza-size" data-pizza-size="small" href="javascript:void('0');">Small 18cm</a>
+                <a class="pizza-size" data-pizza-size="medium" href="javascript:void('0');">Medium 25cm</a>
+                <a class="pizza-size" data-pizza-size="large" href="javascript:void('0');">Large 35cm</a>
             </div>
             <div class="clear"></div>
         </div>
@@ -26,9 +28,9 @@
                 <h2>CRUST</h2>
             </div>
             <div class="right">
-                <a href="javascript:void('0');">Thick</a>
-                <a href="javascript:void('0');">Thin</a>
-                <a href="javascript:void('0');">Factory Special</a>
+                <a class="pizza-crust" data-pizza-crust="thick" href="javascript:void('0');">Thick</a>
+                <a class="pizza-crust" data-pizza-crust="thin" href="javascript:void('0');">Thin</a>
+                <a class="pizza-crust" data-pizza-crust="factory" href="javascript:void('0');">Factory Special</a>
             </div>
             <div class="clear"></div>
         </div>
@@ -37,19 +39,19 @@
                 <h2>INGREDIENTS</h2>
             </div>
             <div class="right">
-                <a href="javascript:void('0');">Salami</a>
-                <a href="javascript:void('0');">Prosciutto</a>
-                <a href="javascript:void('0');">Ham</a>
-                <a href="javascript:void('0');">Pollo</a>
+                <a class="pizza-ingredient" data-pizza-ingredient="salami" href="javascript:void('0');">Salami</a>
+                <a class="pizza-ingredient" data-pizza-ingredient="prosciutto" href="javascript:void('0');">Prosciutto</a>
+                <a class="pizza-ingredient" data-pizza-ingredient="ham" href="javascript:void('0');">Ham</a>
+                <a class="pizza-ingredient" data-pizza-ingredient="pollo" href="javascript:void('0');">Pollo</a>
                 <div class="ingredient-separator"></div>
-                <a href="javascript:void('0');">Mozzarella</a>
-                <a href="javascript:void('0');">Parmesan</a>
-                <a href="javascript:void('0');">Gorgonzola</a>
+                <a class="pizza-ingredient" data-pizza-ingredient="mozzarella" href="javascript:void('0');">Mozzarella</a>
+                <a class="pizza-ingredient" data-pizza-ingredient="parmesan" href="javascript:void('0');">Parmesan</a>
+                <a class="pizza-ingredient" data-pizza-ingredient="gorgonzola" href="javascript:void('0');">Gorgonzola</a>
                 <div class="ingredient-separator"></div>
-                <a href="javascript:void('0');">Tomatoes</a>
-                <a href="javascript:void('0');">Onions</a>
-                <a href="javascript:void('0');">Olives</a>
-                <a href="javascript:void('0');">Corn</a>
+                <a class="pizza-ingredient" data-pizza-ingredient="tomatoes" href="javascript:void('0');">Tomatoes</a>
+                <a class="pizza-ingredient" data-pizza-ingredient="onions" href="javascript:void('0');">Onions</a>
+                <a class="pizza-ingredient" data-pizza-ingredient="olives" href="javascript:void('0');">Olives</a>
+                <a class="pizza-ingredient" data-pizza-ingredient="corn" href="javascript:void('0');">Corn</a>
             </div>
             <div class="clear"></div>
         </div>
