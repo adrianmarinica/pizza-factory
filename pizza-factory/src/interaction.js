@@ -18,7 +18,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.querySelector('#order').addEventListener('click', function () {
-        alert('Thank you for your order!');
-        pizza.reset();
+        if (pizza.isValid()) {
+            alert('Thank you for your order!');
+            pizza.reset();
+        } else {
+            alert('Please select a size, a type of crust and at least 3 ingredients.');
+        }        
     });
 });
