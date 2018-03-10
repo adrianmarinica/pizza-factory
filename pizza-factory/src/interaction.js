@@ -16,4 +16,9 @@ document.addEventListener('DOMContentLoaded', function () {
             pizza.toggleIngredient(ingredientElement.getAttribute('data-pizza-ingredient'));
         });
     });
+
+    document.querySelector('#order').addEventListener('click', function () {
+        alert('Thank you for your order!');
+        pizza.reset();
+    });
 });

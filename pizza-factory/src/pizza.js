@@ -1,9 +1,4 @@
 var pizza = (function (window) {
-    function toggleIngredient(name) {
-        var ingredientToSelect = window.document.querySelector('.pizza-ingredient[data-pizza-ingredient="' + name + '"]');
-        ingredientToSelect.classList.toggle('selected');
-    }
-
     function toggleSize(name) {
         var sizes = window.document.querySelectorAll('.pizza-size');
 
@@ -26,9 +21,35 @@ var pizza = (function (window) {
         crustToSelect.classList.toggle('selected');
     }
 
+    function toggleIngredient(name) {
+        var ingredientToSelect = window.document.querySelector('.pizza-ingredient[data-pizza-ingredient="' + name + '"]');
+        ingredientToSelect.classList.toggle('selected');
+    }
+
+    function reset() {
+        var sizes = window.document.querySelectorAll('.pizza-size');
+
+        sizes.forEach(function (sizeElement) {
+            sizeElement.classList.remove('selected');
+        });
+
+        var crusts = window.document.querySelectorAll('.pizza-crust');
+
+        crusts.forEach(function (crustElement) {
+            crustElement.classList.remove('selected');
+        });
+
+        var ingredients = window.document.querySelectorAll('.pizza-ingredient');
+
+        ingredients.forEach(function (ingredientElement) {
+            ingredientElement.classList.remove('selected');
+        });
+    }
+
     return {
         toggleSize: toggleSize,
         toggleCrust: toggleCrust,
-        toggleIngredient: toggleIngredient
+        toggleIngredient: toggleIngredient,
+        reset: reset
     }
 })(window);
