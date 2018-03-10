@@ -30,6 +30,7 @@ var pizza = (function (window) {
         if (sizeToSelect.classList.contains('selected')) {
             configuration.size = name;
         }
+        storeConfiguration();
     }
 
     function toggleCrust(name) {
@@ -45,12 +46,14 @@ var pizza = (function (window) {
         if (crustToSelect.classList.contains('selected')) {
             configuration.crust = name;
         }
+        storeConfiguration();
     }
 
     function toggleIngredient(name) {
         var ingredientToSelect = window.document.querySelector('.pizza-ingredient[data-pizza-ingredient="' + name + '"]');
         ingredientToSelect.classList.toggle('selected');
         configuration.ingredients[name] = ingredientToSelect.classList.contains('selected');
+        storeConfiguration();
     }
 
     function reset() {
@@ -77,6 +80,8 @@ var pizza = (function (window) {
         for (var i in configuration.ingredients) {
             configuration.ingredients[i] = false;
         }
+
+        localStorage.removeItem('configuration');
     }
 
     function isValid() {
@@ -89,11 +94,36 @@ var pizza = (function (window) {
         return configuration.size != null && configuration.crust != null && ingredientsLength >= 3;
     };
 
+    function storeConfiguration() {
+        localStorage['configuration'] = JSON.stringify(configuration);
+    }
+
+    function loadConfigurationIfExists() {
+        if (typeof localStorage['configuration'] != 'undefined') {
+            configuration = JSON.parse(localStorage['configuration']);
+
+            if (configuration.size != null) {
+                toggleSize(configuration.size);
+            }
+
+            if (configuration.crust != null) {
+                toggleCrust(configuration.crust);
+            }
+
+            for(var i in configuration.ingredients) {
+                if (configuration.ingredients[i]) {
+                    toggleIngredient(i);
+                }
+            }
+        }
+    }
+
     return {
         toggleSize: toggleSize,
         toggleCrust: toggleCrust,
         toggleIngredient: toggleIngredient,
         reset: reset,
-        isValid: isValid
+        isValid: isValid,
+        loadConfigurationIfExists: loadConfigurationIfExists
     }
 })(window);

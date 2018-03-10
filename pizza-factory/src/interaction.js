@@ -25,4 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Please select a size, a type of crust and at least 3 ingredients.');
         }        
     });
+
+    pizza.loadConfigurationIfExists();
 });
