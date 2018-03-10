@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('#order').addEventListener('click', function () {
         if (pizza.isValid()) {
             alert('Thank you for your order!');
+            pizza.save();
             pizza.reset();
         } else {
             alert('Please select a size, a type of crust and at least 3 ingredients.');
@@ -27,4 +28,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     pizza.loadConfigurationIfExists();
+    pizza.loadHistoryIfExists();
 });

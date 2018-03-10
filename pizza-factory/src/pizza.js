@@ -118,12 +118,55 @@ var pizza = (function (window) {
         }
     }
 
+    function save() {
+        // load pre-saved history or create a new array
+        var existingHistory = typeof localStorage['history'] != 'undefined' ? JSON.parse(localStorage['history']) : [];
+
+        // add the current configuration to the in-memory list
+        existingHistory.push(configuration);
+
+        // add the current configuration to the page
+        showOrder(configuration);
+
+        // save the list of orders in localStorage
+        localStorage['history'] = JSON.stringify(existingHistory);
+    }
+
+    function showOrder(order) {
+        // compute comma-separated ingredient list
+        var ingredientsList = '';
+        for (var i in order.ingredients) {
+            if (order.ingredients[i]) {
+                ingredientsList += i + ', ';
+            }
+        }
+        ingredientsList = ingredientsList.substr(0, ingredientsList.length - 2);
+
+        // create a new element for the order
+        var element = window.document.createElement('span');
+        // set the inner HTML of the element
+        element.innerHTML = order.size + ' pizza with a ' + order.crust + ' crust and a topping of: ' + ingredientsList + '.';
+        // add the order element to the list
+        window.document.querySelector('#history').appendChild(element);
+    }
+
+    function loadHistoryIfExists() {
+        if (typeof localStorage['history'] != 'undefined') {
+            var history = JSON.parse(localStorage['history']);
+            for (var i = 0; i < history.length; i++) {
+                showOrder(history[i]);
+            }
+        }
+    }
+
     return {
         toggleSize: toggleSize,
         toggleCrust: toggleCrust,
         toggleIngredient: toggleIngredient,
         reset: reset,
         isValid: isValid,
-        loadConfigurationIfExists: loadConfigurationIfExists
+        loadConfigurationIfExists: loadConfigurationIfExists,
+        loadHistoryIfExists: loadHistoryIfExists,
+        save: save
     }
 })(window);

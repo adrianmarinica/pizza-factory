@@ -38,7 +38,6 @@ body {
 #menu {
     width: 900px;
     margin: 0 auto;
-    margin-bottom: 150px;
 }
 
 #bar {
@@ -96,3 +95,14 @@ h1 {
     font-size: 14px;
     line-height: 1;
 }
+
+#history {
+    width: 900px;
+    margin: 0 auto;
+    margin-bottom: 150px;
+}
+    #history span {
+        border-bottom: 1px dotted #313d34;
+        padding: 5px 0;
+        display: block;
+    }
