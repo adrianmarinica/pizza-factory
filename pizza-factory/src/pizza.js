@@ -1,4 +1,21 @@
 var pizza = (function (window) {
+    var emptyPizzaPrice = 5;
+    var totalPrice = emptyPizzaPrice;
+
+    var prices = {
+        salami: 2,
+        prosciutto: 5,
+        ham: 4,
+        pollo: 3,
+        mozzarella: 2,
+        parmesan: 3,
+        gorgonzola: 5,
+        tomatoes: 1,
+        onions: 1,
+        olives: 2,
+        corn: 2
+    }
+
     var configuration = {
         size: null,
         crust: null,
@@ -53,7 +70,16 @@ var pizza = (function (window) {
     function toggleIngredient(name) {
         var ingredientToSelect = window.document.querySelector('.pizza-ingredient[data-pizza-ingredient="' + name + '"]');
         ingredientToSelect.classList.toggle('selected');
-        configuration.ingredients[name] = ingredientToSelect.classList.contains('selected');
+
+        var ingredientIsAdded = ingredientToSelect.classList.contains('selected');
+        configuration.ingredients[name] = ingredientIsAdded;
+
+        if (ingredientIsAdded) {
+            totalPrice += prices[name];
+        } else {
+            totalPrice -= prices[name];
+        }
+
         storeConfiguration();
     }
 
@@ -83,6 +109,8 @@ var pizza = (function (window) {
         for (var i in configuration.ingredients) {
             configuration.ingredients[i] = false;
         }
+
+        totalPrice = emptyPizzaPrice;
 
         localStorage.removeItem('configuration');
     }
@@ -125,6 +153,7 @@ var pizza = (function (window) {
         // load pre-saved history or create a new array
         var existingHistory = typeof localStorage['history'] != 'undefined' ? JSON.parse(localStorage['history']) : [];
         configuration.created = new Date();
+        configuration.price = totalPrice;
 
         // add the current configuration to the in-memory list
         existingHistory.push(configuration);
@@ -146,24 +175,33 @@ var pizza = (function (window) {
         }
         ingredientsList = ingredientsList.substr(0, ingredientsList.length - 2);
 
+        var orderElement = window.document.createElement('div');
+        orderElement.classList.add('order');
+
         // create new elements for the order
         var descriptionElement = window.document.createElement('span');
-        descriptionElement.classList.add('left');
+        descriptionElement.classList.add('left', 'order-summary');
 
         var dateElement = window.document.createElement('span');
-        dateElement.classList.add('right');
+        dateElement.classList.add('right', 'order-date');
 
         var clearElement = window.document.createElement('div');
         clearElement.classList.add('clear');
 
         // set the inner HTML of the elements
-        descriptionElement.innerHTML = order.size + ' pizza with a ' + order.crust + ' crust and a topping of: ' + ingredientsList + '.';
+        descriptionElement.innerHTML = order.size + ' pizza with a ' + order.crust + ' crust and a topping of: ' + ingredientsList + ' - $' + order.price + '.';
         dateElement.innerHTML = moment(order.created).fromNow();
 
         // add the elements to the list
-        window.document.querySelector('#history').appendChild(descriptionElement);
-        window.document.querySelector('#history').appendChild(dateElement);
-        window.document.querySelector('#history').appendChild(clearElement);
+        orderElement.appendChild(descriptionElement);
+        orderElement.appendChild(dateElement);
+        orderElement.appendChild(clearElement);
+
+        window.document.querySelector('#history').appendChild(orderElement);
+    }
+
+    function getPrice() {
+        return totalPrice;
     }
 
     function loadHistoryIfExists() {
@@ -183,6 +221,7 @@ var pizza = (function (window) {
         isValid: isValid,
         loadConfigurationIfExists: loadConfigurationIfExists,
         loadHistoryIfExists: loadHistoryIfExists,
-        save: save
+        save: save,
+        getPrice: getPrice
     }
 })(window);
