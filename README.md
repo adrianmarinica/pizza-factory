@@ -24,6 +24,7 @@
 * Save the date with every order submitted
 * Using an external library (moment.js), show the relative adding time
 
+\* solved here: https://github.com/adrianmarinica/pizza-factory/tree/m4
 # Module 5:
 *Every time an order is placed, the customer should be aware of the final cost of the pizza they configured.*
 
@@ -33,3 +34,5 @@
    - when you select an ingredient, the live price increases
    - when you deselect an ingredient, the live price decreases
 + Store the final price in the order history list
+
+\* solved here: https://github.com/adrianmarinica/pizza-factory/tree/m5
