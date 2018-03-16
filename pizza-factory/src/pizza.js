@@ -2,6 +2,7 @@ var pizza = (function (window) {
     var configuration = {
         size: null,
         crust: null,
+        created: null,
         ingredients: {
             salami: false,
             prosciutto: false,
@@ -77,6 +78,8 @@ var pizza = (function (window) {
 
         configuration.size = null;
         configuration.crust = null;
+        configuration.created = null;
+
         for (var i in configuration.ingredients) {
             configuration.ingredients[i] = false;
         }
@@ -121,6 +124,7 @@ var pizza = (function (window) {
     function save() {
         // load pre-saved history or create a new array
         var existingHistory = typeof localStorage['history'] != 'undefined' ? JSON.parse(localStorage['history']) : [];
+        configuration.created = new Date();
 
         // add the current configuration to the in-memory list
         existingHistory.push(configuration);
@@ -142,12 +146,24 @@ var pizza = (function (window) {
         }
         ingredientsList = ingredientsList.substr(0, ingredientsList.length - 2);
 
-        // create a new element for the order
-        var element = window.document.createElement('span');
-        // set the inner HTML of the element
-        element.innerHTML = order.size + ' pizza with a ' + order.crust + ' crust and a topping of: ' + ingredientsList + '.';
-        // add the order element to the list
-        window.document.querySelector('#history').appendChild(element);
+        // create new elements for the order
+        var descriptionElement = window.document.createElement('span');
+        descriptionElement.classList.add('left');
+
+        var dateElement = window.document.createElement('span');
+        dateElement.classList.add('right');
+
+        var clearElement = window.document.createElement('div');
+        clearElement.classList.add('clear');
+
+        // set the inner HTML of the elements
+        descriptionElement.innerHTML = order.size + ' pizza with a ' + order.crust + ' crust and a topping of: ' + ingredientsList + '.';
+        dateElement.innerHTML = moment(order.created).fromNow();
+
+        // add the elements to the list
+        window.document.querySelector('#history').appendChild(descriptionElement);
+        window.document.querySelector('#history').appendChild(dateElement);
+        window.document.querySelector('#history').appendChild(clearElement);
     }
 
     function loadHistoryIfExists() {
