@@ -1,0 +1,13 @@
+{
+  "name": "pizza-factory",
+  "version": "1.0.0",
+  "description": "Pizza Factory App",
+  "author": "Adrian Marinica",
+  "license": "MIT",
+  "scripts": {
+    "test": "cd test && karma start"
+  },
+  "dependencies": {
+    "moment": "^2.21.0"
+  }
+}
