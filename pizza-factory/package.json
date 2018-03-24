@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "moment": "^2.21.0"
+
   },
   "devDependencies": {
     "jasmine-core": "^3.1.0",
