@@ -5,4 +5,11 @@ describe('Pizza Factory', function () {
         expect(order).toBeDefined();
     });
 
+    it('should not allow a pizza without a size', function () {
+        
+    });
+
+    it('should not allow a pizza with less than 3 ingredients', function () {
+
+    });
 });
