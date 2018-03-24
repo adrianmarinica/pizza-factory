@@ -36,3 +36,23 @@
 + Store the final price in the order history list
 
 \* solved here: https://github.com/adrianmarinica/pizza-factory/tree/m5
+# Module 6:
+*Our first unit test with Karma and Jasmine.*
+
++ Install Karma and Jasmine globally to run unit tests using the following commands:
+```
+npm install -g karma jasmine-core karma-spec-reporter
+```
++ run the existing unit tests using npm:
+```
+npm test
+```
+\* solved here: https://github.com/adrianmarinica/pizza-factory/tree/m6
+# Module 7:
+*Create your own unit tests*
+
++ complete the placeholder unit tests to check that
+   - a pizza should always have a size selected
+   - a pizza should have at least 3 ingredients
+   
+\* start from here: https://github.com/adrianmarinica/pizza-factory/tree/m6
