@@ -52,7 +52,8 @@ function initialize(document) {
     });
 
     document.querySelector('#order').addEventListener('click', function() {
-        if (order.isValid()) {
+        var errors = order.isValid();
+        if (errors.length == 0) {
             alert('Thank you for your order!');
             order.save();
             order.reset();
@@ -65,7 +66,7 @@ function initialize(document) {
 
             showPrice();
         } else {
-            alert('Please select a size, a type of crust and at least 3 ingredients.');
+            alert('Cannot complete order because\r\n' + errors.reduce((acc, i) => acc + i + '\r\n'));
         }
     });
 
