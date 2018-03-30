@@ -1,4 +1,5 @@
 import order from './order';
+import inventory from './inventory';
 import moment from 'moment';
 
 
@@ -49,6 +50,32 @@ function initialize(document) {
                 order.toggleIngredient(ingredientElement.getAttribute('data-pizza-ingredient'));
                 showPrice();
             });
+    });
+
+    function toggleDisplay(element) {
+        element.style.display = element.style.display != 'block' ? 'block' : 'none';
+
+    }
+
+    document.querySelector('#show-inventory').addEventListener('click', function() {
+        let stock = inventory.getStock();
+        console.log(stock);
+        let container = document.querySelector('#container-inventory');
+
+        toggleDisplay(container);
+
+        while (container.lastChild) {
+            container.removeChild(container.lastChild);
+        }
+        let list = document.createElement('ul');
+        stock.forEach(item => {
+            let li = document.createElement('li');
+            li.innerHTML = `item: ${item.item}, quantity: ${item.quantity}`;
+            list.appendChild(li);
+        });
+        container.appendChild(list);
+
+
     });
 
     document.querySelector('#order').addEventListener('click', function() {

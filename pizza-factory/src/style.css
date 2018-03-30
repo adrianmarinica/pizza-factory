@@ -6,21 +6,25 @@ html {
     color: #313d34;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     margin: 0;
     padding: 0;
 }
 
 body {
-	height: 100%;
-	width: 100%;
-	background-color: #6ea283;
+    height: 100%;
+    width: 100%;
+    background-color: #6ea283;
 }
 
 #logo {
-	margin: 20px auto 0;
-	display: block;
-	width: 500px;
+    margin: 20px auto 0;
+    display: block;
+    width: 500px;
 }
 
 .left {
@@ -47,7 +51,8 @@ body {
     margin: 30px 0;
 }
 
-a, a:visited {
+a,
+a:visited {
     background-color: #a91919;
     display: inline-block;
     margin: 3px;
@@ -58,9 +63,9 @@ a, a:visited {
     text-transform: uppercase;
 }
 
-    a.selected {
-        background-color: #610d0d;
-    }
+a.selected {
+    background-color: #610d0d;
+}
 
 .section {
     margin: 20px 0;
@@ -121,4 +126,26 @@ h1 {
 #price {
     font-size: 30px;
     margin-right: 10px;
+}
+
+#show-inventory {
+    margin: 6px;
+}
+
+#container-inventory {
+    /* toggled display */
+    display: none;
+    background: #313d34;
+    color: white;
+    z-index: 1000;
+    position: absolute;
+    margin: -30px 30px 30px 30px;
+    padding: 30px;
+}
+
+#container-inventory ul,
+#container-inventory li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }

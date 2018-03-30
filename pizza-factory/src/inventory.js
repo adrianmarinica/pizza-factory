@@ -27,8 +27,10 @@ function load(orderHistory) {
     (orderHistory || []).forEach(removeFromStock);
 };
 
-function get() {
-    return stock;
+function getStock() {
+    let inv = stock.ingredients;
+    var mapped = Object.keys(inv).map(function(e) { return { item: e, quantity: inv[e] }; });
+    return mapped;
 };
 
 function isValid(pizza) {
@@ -45,6 +47,6 @@ function isValid(pizza) {
 
 export default {
     load: load,
-    get: get,
+    getStock: getStock,
     isValid: isValid
 }
