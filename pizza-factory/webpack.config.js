@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     entry: {
         app: './src/index.js',
-        vendor: ['moment']
+        //        vendor: ['moment']
     },
     devtool: 'inline-source-map',
 
@@ -17,7 +17,9 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new CopyWebpackPlugin([
-            { from: 'src/**/*', flatten: true }
+            { from: 'src/**/*.css', flatten: true },
+            { from: 'src/**/*.html', flatten: true },
+            { from: 'src/**/*.png', flatten: true }
         ]),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
@@ -26,5 +28,15 @@ module.exports = {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist')
     },
-
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendor",
+                    chunks: "all"
+                }
+            }
+        }
+    },
 };
