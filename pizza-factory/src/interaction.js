@@ -57,13 +57,9 @@ function initialize(document) {
 
     }
 
-    document.querySelector('#show-inventory').addEventListener('click', function() {
+    function updateDisplayedStock() {
         let stock = inventory.getStock();
-        console.log(stock);
         let container = document.querySelector('#container-inventory');
-
-        toggleDisplay(container);
-
         while (container.lastChild) {
             container.removeChild(container.lastChild);
         }
@@ -75,7 +71,11 @@ function initialize(document) {
         });
         container.appendChild(list);
 
-
+    }
+    document.querySelector('#show-inventory').addEventListener('click', function() {
+        let container = document.querySelector('#container-inventory');
+        toggleDisplay(container);
+        updateDisplayedStock();
     });
 
     document.querySelector('#order').addEventListener('click', function() {
@@ -92,6 +92,7 @@ function initialize(document) {
             });
 
             showPrice();
+            updateDisplayedStock();
         } else {
             alert('Cannot complete order because\r\n' + errors.reduce((acc, i) => acc + i + '\r\n'));
         }

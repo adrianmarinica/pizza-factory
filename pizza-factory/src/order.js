@@ -96,6 +96,8 @@ function save() {
 
     // add the current configuration to the page
     interaction.showOrder(configuration);
+
+    inventory.removeFromStock(configuration);
     // showOrder(configuration);
 }
 

@@ -48,5 +48,6 @@ function isValid(pizza) {
 export default {
     load: load,
     getStock: getStock,
+    removeFromStock: removeFromStock,
     isValid: isValid
 }
