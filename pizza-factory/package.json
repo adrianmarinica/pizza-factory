@@ -1,21 +1,29 @@
 {
-  "name": "pizza-factory",
-  "version": "1.0.0",
-  "description": "Pizza Factory App",
-  "author": "Adrian Marinica",
-  "license": "MIT",
-  "scripts": {
-    "test": "cd test && karma start"
-  },
-  "dependencies": {
-    "moment": "^2.21.0"
-
-  },
-  "devDependencies": {
-    "jasmine-core": "^3.1.0",
-    "karma": "^2.0.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-jasmine": "^1.1.1",
-    "karma-spec-reporter": "0.0.32"
-  }
+    "name": "pizza-factory",
+    "version": "1.0.0",
+    "description": "Pizza Factory App",
+    "author": "Adrian Marinica",
+    "license": "MIT",
+    "scripts": {
+        "test": "cd test && karma start",
+        "start": "webpack-dev-server --open --mode development",
+        "build": "webpack --colors --progress --mode production",
+        "watch": "webpack --watch --mode development"
+    },
+    "dependencies": {
+        "moment": "^2.21.0"
+    },
+    "devDependencies": {
+        "clean-webpack-plugin": "^0.1.19",
+        "copy-webpack-plugin": "^4.5.1",
+        "jasmine-core": "^3.1.0",
+        "jshint-loader": "^0.8.4",
+        "karma": "^2.0.0",
+        "karma-chrome-launcher": "^2.2.0",
+        "karma-jasmine": "^1.1.1",
+        "karma-spec-reporter": "0.0.32",
+        "webpack": "^4.2.0",
+        "webpack-cli": "^2.0.13",
+        "webpack-dev-server": "^3.1.1"
+    }
 }

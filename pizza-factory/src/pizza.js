@@ -1,4 +1,4 @@
-var pizza = (function (window) {
+export default function pizza(config) {
     var prices = {
         salami: 2,
         prosciutto: 5,
@@ -13,7 +13,7 @@ var pizza = (function (window) {
         corn: 2
     }
 
-    var configuration = {
+    var configuration = config || {
         size: null,
         crust: null,
         created: null,
@@ -46,7 +46,7 @@ var pizza = (function (window) {
 
     function setCrust(crust) {
         configuration.crust = crust;
-    }    
+    }
 
     function getCrust() {
         return configuration.crust;
@@ -99,4 +99,4 @@ var pizza = (function (window) {
         getIngredientsPrice: getIngredientsPrice,
         getNumberOfIngredients: getNumberOfIngredients
     }
-})(window);
+};
