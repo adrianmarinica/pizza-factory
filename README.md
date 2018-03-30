@@ -56,3 +56,30 @@ npm test
    - a pizza should have at least 3 ingredients
    
 \* start from here: https://github.com/adrianmarinica/pizza-factory/tree/m6
+
+\* solved here: https://github.com/adrianmarinica/pizza-factory/tree/m7
+# Module 8:
+*Using Webpack*
+
++ use Webpack to prepare client app components with
+   - bundle components
+   - reduce file size by applying minifcation
+   
+\* solved here: https://github.com/adrianmarinica/pizza-factory/tree/m8
+
+# Module 9:
+*New feature: Inventory*
+
++ create a new modular component for handling inventory operations
+   - should be integrated through Webpack
+   - should be used in client app
+   
++ the inventory component should allow us to
+   - keep track of all the ingredients used so far (through the history of orders)
+   - have quantities available for each ingredient in stock
+   - check if ingredients are available prior to completing an order
+   - (bonus) show available ingredient quantities
+
+\* solved here: https://github.com/adrianmarinica/pizza-factory/tree/m9
+
+   
