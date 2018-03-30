@@ -1,4 +1,5 @@
 import order from './order';
+import inventory from './inventory';
 import moment from 'moment';
 
 
@@ -51,8 +52,35 @@ function initialize(document) {
             });
     });
 
+    function toggleDisplay(element) {
+        element.style.display = element.style.display != 'block' ? 'block' : 'none';
+
+    }
+
+    function updateDisplayedStock() {
+        let stock = inventory.getStock();
+        let container = document.querySelector('#container-inventory');
+        while (container.lastChild) {
+            container.removeChild(container.lastChild);
+        }
+        let list = document.createElement('ul');
+        stock.forEach(item => {
+            let li = document.createElement('li');
+            li.innerHTML = `item: ${item.item}, quantity: ${item.quantity}`;
+            list.appendChild(li);
+        });
+        container.appendChild(list);
+
+    }
+    document.querySelector('#show-inventory').addEventListener('click', function() {
+        let container = document.querySelector('#container-inventory');
+        toggleDisplay(container);
+        updateDisplayedStock();
+    });
+
     document.querySelector('#order').addEventListener('click', function() {
-        if (order.isValid()) {
+        var errors = order.isValid();
+        if (errors.length == 0) {
             alert('Thank you for your order!');
             order.save();
             order.reset();
@@ -64,8 +92,9 @@ function initialize(document) {
             });
 
             showPrice();
+            updateDisplayedStock();
         } else {
-            alert('Please select a size, a type of crust and at least 3 ingredients.');
+            alert('Cannot complete order because\r\n' + errors.reduce((acc, i) => acc + i + '\r\n'));
         }
     });
 

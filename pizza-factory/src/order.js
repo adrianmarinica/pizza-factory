@@ -1,5 +1,7 @@
 import Pizza from './pizza';
-import interaction from './interaction'
+import interaction from './interaction';
+import inventory from './inventory';
+
 
 var pizza = new Pizza();
 var emptyPizzaPrice = 5;
@@ -46,7 +48,19 @@ function reset() {
 }
 
 function isValid() {
-    return pizza.getSize() != null && pizza.getCrust() != null && pizza.getNumberOfIngredients() >= 3;
+    let errors = [];
+    if (pizza.getSize() == null) {
+        errors.push("size not selected");
+    }
+    if (pizza.getCrust() == null) {
+        errors.push("crust not selected");
+    }
+    if (pizza.getNumberOfIngredients() < 3) {
+        errors.push("at least 3 ingredients should be selected");
+    }
+    var stockResult = inventory.isValid(pizza);
+    errors = errors.concat(stockResult);
+    return errors;
 };
 
 function storeConfiguration() {
@@ -82,6 +96,8 @@ function save() {
 
     // add the current configuration to the page
     interaction.showOrder(configuration);
+
+    inventory.removeFromStock(configuration);
     // showOrder(configuration);
 }
 
@@ -93,6 +109,7 @@ function getTotal() {
 function loadHistoryIfExists() {
     if (typeof localStorage['history'] != 'undefined') {
         var history = JSON.parse(localStorage['history']);
+        inventory.load(history);
         return history;
     }
     return [];
