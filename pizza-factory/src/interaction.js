@@ -81,18 +81,21 @@ function initialize(document) {
     document.querySelector('#order').addEventListener('click', function() {
         var errors = order.isValid();
         if (errors.length == 0) {
-            alert('Thank you for your order!');
-            order.save();
-            order.reset();
+            order.save(function () {
+                alert('Thank you for your order!');
+                order.reset();
 
-            document.querySelector('.pizza-size.selected').classList.remove('selected');
-            document.querySelector('.pizza-crust.selected').classList.remove('selected');
-            document.querySelectorAll('.pizza-ingredient').forEach(function(ingredientElement) {
-                ingredientElement.classList.remove('selected');
+                document.querySelector('.pizza-size.selected').classList.remove('selected');
+                document.querySelector('.pizza-crust.selected').classList.remove('selected');
+                document.querySelectorAll('.pizza-ingredient').forEach(function (ingredientElement) {
+                    ingredientElement.classList.remove('selected');
+                });
+
+                showPrice();
+                updateDisplayedStock();
+            }, function () {
+                alert('An error has occurred. Please try again later.');
             });
-
-            showPrice();
-            updateDisplayedStock();
         } else {
             alert('Cannot complete order because\r\n' + errors.reduce((acc, i) => acc + i + '\r\n'));
         }

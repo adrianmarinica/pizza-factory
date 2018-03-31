@@ -1,7 +1,7 @@
 import Pizza from './pizza';
 import interaction from './interaction';
 import inventory from './inventory';
-
+import baker from './http';
 
 var pizza = new Pizza();
 var emptyPizzaPrice = 5;
@@ -79,7 +79,7 @@ function loadConfigurationIfExists() {
     return null;
 }
 
-function save() {
+function save(success, error) {
     // load pre-saved history or create a new array
     var existingHistory = typeof localStorage['history'] != 'undefined' ? JSON.parse(localStorage['history']) : [];
 
@@ -98,7 +98,8 @@ function save() {
     interaction.showOrder(configuration);
 
     inventory.removeFromStock(configuration);
-    // showOrder(configuration);
+
+    baker.post('http://localhost:3000/orders', configuration, success, error);
 }
 
 
