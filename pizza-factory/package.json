@@ -9,7 +9,7 @@
         "dev": "webpack-dev-server --open --mode development",
         "build": "webpack --mode production",
         "watch": "webpack --watch --mode development",
-		"start": "npm run build && node ./bin/www"
+        "start": "npm run build && node ./bin/www"
     },
     "dependencies": {
         "express": "^4.16.3",

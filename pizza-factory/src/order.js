@@ -99,7 +99,7 @@ function save(success, error) {
 
     inventory.removeFromStock(configuration);
 
-    baker.post('http://localhost:3000/orders', configuration, success, error);
+    baker.post(SERVICE_ENDPOINT_PIZZA_API + '/orders', configuration, success, error);
 }
 
 

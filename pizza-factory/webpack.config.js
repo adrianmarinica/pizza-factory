@@ -15,6 +15,9 @@ module.exports = {
         hot: true,
     },
     plugins: [
+        new webpack.DefinePlugin({
+            SERVICE_ENDPOINT_PIZZA_API: JSON.stringify(process.env.SERVICE_ENDPOINT_PIZZA_API || "http://localhost:3000"),
+        }),
         new CleanWebpackPlugin(['dist']),
         new CopyWebpackPlugin([
             { from: 'src/**/*.css', flatten: true },
